@@ -21,14 +21,14 @@ object Main extends JFXApp {
   val cfg = yaml.load(new FileInputStream(new File("config.yml"))).asInstanceOf[util.Map[String, Any]]
   val bot1 = cfg.get("bots").asInstanceOf[util.List[util.Map[String, String]]].get(0)
 
-  val listener = new ChatListener(200)
+  val listener = new ChatListener(1100)
 
   val config = new Configuration.Builder()
     .setName(bot1.get("name"))
     .setLogin(bot1.get("name"))
     .setServerPassword("oauth:" + bot1.get("oauth"))
     .addServer("irc.twitch.tv")
-    .addAutoJoinChannel("#forsenlol")
+    .addAutoJoinChannel("#rocketleague")
     .setAutoNickChange(false)
     .addCapHandler(new EnableCapHandler("twitch.tv/membership"))
     .addCapHandler(new EnableCapHandler("twitch.tv/tags"))
